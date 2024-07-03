@@ -22,6 +22,13 @@ func main() {
 		return
 	}
 
+	response := make([]byte, 1024)
+	n, err := conn.Read(response)
+	if err != nil {
+		return
+	}
+	fmt.Println(string(response[:n]))
+
 	// Read and process data from the server
 	// ...
 }
