@@ -1,5 +1,5 @@
-# Polenta DB - Go version - test
+# PolentaDB - test project
 
-This project is used to test Polenta DB implemented in go.
+This project is used to test version of PolentaDB implemented in Go.
 
-It connects to a Polenta DB instance and run the tests.
+It connects to a local PolentaDB instance and run some SQL statements.
