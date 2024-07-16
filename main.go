@@ -6,18 +6,28 @@ import (
 )
 
 func main() {
-	testCreateBag()
+	testCreate()
 	testInsertBag()
 	testSelectBag()
 }
 
-func testCreateBag() {
-	result := testStatement("create bag person (name string, age int)")
-	fmt.Println(result)
+func testCreate() {
+	statements := []string{
+		"create bag person (name string, age int)",
+		"create bag animals (name string)",
+		"create table animals (name string)",
+		"create table animals (name string)",
+		"create function add (a int, b int) int",
+		"create user developer",
+		"create bag person (name string, age int)",
+		"create user dba",
+		"create user admin",
+	}
+	testStatements(statements)
 }
 
 func testInsertBag() {
-	result := testStatement("insert into bag person (name, age) values (\"John\", 30)")
+	result := execStatement("insert into bag person (name, age) values (\"John\", 30)")
 	fmt.Println(result)
 }
 
@@ -27,21 +37,25 @@ func testSelectBag() {
 		"select * from person where age = 30",
 		"select * from person where age = 40",
 	}
+	testStatements(statements)
+}
+
+func testStatements(statements []string) {
 	c := make(chan string)
 	for _, statement := range statements {
-		go testSelect(statement, c)
+		go testStatement(statement, c)
 	}
 	for i := 0; i < len(statements); i++ {
 		fmt.Println(<-c)
 	}
 }
 
-func testSelect(statement string, c chan string) {
-	result := testStatement(statement)
+func testStatement(statement string, c chan string) {
+	result := execStatement(statement)
 	c <- result
 }
 
-func testStatement(statement string) string {
+func execStatement(statement string) string {
 	conn, err := net.Dial("tcp", "localhost:8080")
 	if err != nil {
 		fmt.Println("Error:", err)
