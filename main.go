@@ -56,7 +56,7 @@ func testStatement(statement string, c chan string) {
 }
 
 func execStatement(statement string) string {
-	conn, err := net.Dial("tcp", "localhost:8080")
+	conn, err := net.Dial("tcp", "localhost:9000")
 	if err != nil {
 		fmt.Println("Error:", err)
 		return "Error:" + string(err.Error())
