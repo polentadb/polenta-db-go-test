@@ -36,6 +36,7 @@ func testSelectBag() {
 		"select * from person where age = 20",
 		"select * from person where age = 30",
 		"select * from person where age = 40",
+		"select * from role",
 	}
 	testStatements(statements)
 }
