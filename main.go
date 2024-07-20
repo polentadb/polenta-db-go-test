@@ -27,8 +27,12 @@ func testCreate() {
 }
 
 func testInsertBag() {
-	result := execStatement("insert into bag person (name, age) values (\"John\", 30)")
-	fmt.Println(result)
+	statements := []string{
+		"insert into person (name, age) values (\"John\", 30)",
+		"insert into person (\"Mary\", 40)",
+		"insert into employee (name, age) values (\"John\", 30)",
+	}
+	testStatements(statements)
 }
 
 func testSelectBag() {
