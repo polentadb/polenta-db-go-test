@@ -13,13 +13,13 @@ func main() {
 
 func testCreate() {
 	statements := []string{
-		"create bag person (name string, age int)",
+		"create bag person (id sequence, name string, age int)",
 		"create bag animals (name string)",
-		"create table animals (name string)",
+		"create table animals (id sequence, name string)",
 		"create table animals (name string)",
 		"create function add (a int, b int) int",
 		"create user developer",
-		"create bag person (name string, age int)",
+		"create bag person (id sequence, name string, age int)",
 		"create user dba",
 		"create user admin",
 	}
